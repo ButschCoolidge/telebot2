@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Bot Steuerung</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        button { font-size: 24px; padding: 20px 40px; margin: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Bot Fernsteuerung</h1>
+    <button onclick="sendCommand('forward')">Vor</button><br>
+    <button onclick="sendCommand('left')">Links</button>
+    <button onclick="sendCommand('stop')">Stopp</button>
+    <button onclick="sendCommand('right')">Rechts</button><br>
+    <button onclick="sendCommand('backward')">Zurück</button>
+
+    <script>
+        const botIP = "192.168.1.100"; // Hier IP deines Bots eintragen
+
+        function sendCommand(command) {
+            fetch(`http://${botIP}/${command}`)
+              .then(response => console.log("Befehl gesendet:", command))
+              .catch(error => console.error("Fehler:", error));
+        }
+    </script>
+</body>
+</html>
