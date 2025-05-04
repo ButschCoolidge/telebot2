@@ -10,6 +10,7 @@
 </head>
 <body>
     <h1>Bot Fernsteuerung</h1>
+    <p><strong>Tastatursteuerung:</strong> ↑/↓/←/→ oder W/A/S/D, Leertaste = Stopp</p>
     <button onclick="sendCommand('forward')">Vor</button><br>
     <button onclick="sendCommand('left')">Links</button>
     <button onclick="sendCommand('stop')">Stopp</button>
@@ -24,6 +25,34 @@
               .then(response => console.log("Befehl gesendet:", command))
               .catch(error => console.error("Fehler:", error));
         }
+
+        document.addEventListener("keydown", function(event) {
+            switch(event.key) {
+                case "ArrowUp":
+                case "w":
+                case "W":
+                    sendCommand("forward");
+                    break;
+                case "ArrowDown":
+                case "s":
+                case "S":
+                    sendCommand("backward");
+                    break;
+                case "ArrowLeft":
+                case "a":
+                case "A":
+                    sendCommand("left");
+                    break;
+                case "ArrowRight":
+                case "d":
+                case "D":
+                    sendCommand("right");
+                    break;
+                case " ":
+                    sendCommand("stop");
+                    break;
+            }
+        });
     </script>
 </body>
 </html>
